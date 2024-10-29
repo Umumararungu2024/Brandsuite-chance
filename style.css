@@ -330,3 +330,17 @@ section {
         display: block;
     }
 }
+.slideshow-container {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 300px;
+}
+
+  .mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
