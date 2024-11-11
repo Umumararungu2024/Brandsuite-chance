@@ -8,71 +8,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1 class="title">Welcome to Brand Suite</h1>
-        <p class="tagline">Empower Your Online Presence with Simplicity</p>
-        <a href="#" class="btn-button">Get Started</a>
-        <nav>
-            <div class="hamburger">
+   
+    <header>
+        <div class="header-container">
+            <div class="logo">BrandSuite</div>
+            <button class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <ul class="nav-menu">
-                <li class="close-btn-container">
-                    <button class="close-btn" aria-label="Close menu">✕</button>
-                </li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+            </button>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+   <div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 4</div>
+      <img src="img1.jpg" style="width:100%">
+      <div class="text">Caption Text</div>
+      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
     </div>
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-          <div class="numbertext">1 / 4</div>
-          <img src="img1.jpg" style="width:100%">
-          <div class="text">Caption Text</div>
-          <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-        </div>
-        
-        <div class="mySlides fade">
-          <div class="numbertext">2 / 4</div>
-          <img src="img2.jpg" style="width:100%">
-          <div class="text">Caption Two</div>
-          <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-        </div>
-        
-        <div class="mySlides fade">
-          <div class="numbertext">3 / 4</div>
-          <img src="img3.jpg" style="width:100%">
-          <div class="text">Caption Three</div>
-          <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-        </div>
-        <div class="mySlides fade">
-            <div class="numbertext">4 / 4</div>
-            <img src="img4.jpg" style="width:100%">
-            <div class="text">Caption four</div>
-            <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-          </div>
-        </div>
-        <br>
-        
-        <div style="text-align:center">
-          <span class="dot"></span> 
-          <span class="dot"></span> 
-          <span class="dot"></span>
-          <span class="dot"></span> 
-        </div>
-</header>
-
+    
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 4</div>
+      <img src="img2.jpg" style="width:100%">
+      <div class="text">Caption Two</div>
+      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 4</div>
+      <img src="img3.jpg" style="width:100%">
+      <div class="text">Caption Three</div>
+      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="img4.jpg" style="width:100%">
+        <div class="text">Caption four</div>
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+      </div>
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span>
+      <span class="dot"></span> 
+    </div>
 <section id="features" class="feature-section">
     <div class="container">
         <h2>Features</h2>

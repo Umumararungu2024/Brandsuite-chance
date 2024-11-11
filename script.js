@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const slideDelay = 2000;
     
     const slideshowContainer = document.querySelector('.slideshow-container');
-    
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
     // Show a specific slide
     function showSlide(n) {
         const slides = document.getElementsByClassName("mySlides");
@@ -59,28 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => moveSlide(1));
     });
     
-    // Menu toggle functionality
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const closeBtn = document.querySelector('.close-btn');
-    
-    function toggleMenu() {
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        
-        // Toggle hamburger animation
-        const spans = hamburger.getElementsByTagName('span');
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    }
-    
     // Initialize slideshow if container exists
     if (slideshowContainer) {
         slideshowContainer.addEventListener('mouseenter', () => {
@@ -96,23 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         slideTimeout = setTimeout(showSlides, slideDelay);
     }
     
-    // Initialize menu functionality if elements exist
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', toggleMenu);
-        if (closeBtn) {
-            closeBtn.addEventListener('click', toggleMenu);
-        }
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideMenu = navMenu.contains(event.target);
-            const isClickOnHamburger = hamburger.contains(event.target);
-            
-            if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    }
+    
     
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -149,4 +114,84 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(item);
         });
     }
+});
+
+
+let currentSlide = 0;
+const slider = document.getElementById('slider');
+const sliderNav = document.getElementById('sliderNav');
+const totalSlides = document.querySelectorAll('.slide').length;
+let slideInterval;
+
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+}
+
+// Create navigation dots
+for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+    dot.onclick = () => goToSlide(i);
+    sliderNav.appendChild(dot);
+}
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${currentSlide * 25}%)`;
+    // Update navigation dots
+    document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlider();
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlider();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+    resetInterval();
+}
+
+function startSlideshow() {
+    slideInterval = setInterval(nextSlide, 2000); // Change slide every 2 seconds
+}
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    startSlideshow();
+}
+
+startSlideshow();
+
+// Pause on hover
+slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+slider.addEventListener('mouseleave', startSlideshow);
+
+// Optional: Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        prevSlide();
+        resetInterval();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+        resetInterval();
+    }
+});
+
+// Close the menu when a link is clicked
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        const menu = document.getElementById('menu');
+        if (menu.classList.contains('active')) {
+            menu.classList.remove('active');
+        }
+    });
 });
